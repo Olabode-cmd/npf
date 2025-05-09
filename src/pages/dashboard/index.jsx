@@ -51,8 +51,6 @@ const Dashboard = () => {
         );
     }
   };
-
-  // Priority badges with appropriate colors
   const getPriorityBadge = (priority) => {
     switch (priority) {
       case "High":

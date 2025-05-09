@@ -1,8 +1,23 @@
-// Header.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, Bell, Search, ChevronDown } from 'lucide-react';
+import { getuser } from '../services/auth';
 
 const Header = ({ toggleSidebar }) => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        const data = await getuser();
+        setUser(data);
+      } catch (err) {
+        console.error('Error fetching user:', err);
+      }
+    };
+
+    loadUser();
+  }, []);
+
   return (
     <header className="bg-white border-b border-gray-200 py-4 px-6 flex items-center justify-between">
       <div className="flex items-center">
@@ -31,12 +46,16 @@ const Header = ({ toggleSidebar }) => {
         <div className="flex items-center">
           <img
             className="w-8 h-8 rounded-full"
-            src="https://www.icirnigeria.org/wp-content/uploads/2022/04/Muyiwa-Adejobi-ppro.jpg"
+            src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/256/Police-Officer-icon.png"
             alt="Profile"
           />
           <div className="ml-3 hidden md:block">
-            <p className="text-sm font-medium text-gray-700">John Doe</p>
-            <p className="text-xs text-gray-500">Admin</p>
+            <p className="text-sm font-medium text-gray-700">
+              {user ? `${user.first_name} ${user.last_name}` : 'Loading...'}
+            </p>
+            <p className="text-xs text-gray-500">
+              {user ? user.officer_id : ''}
+            </p>
           </div>
           <ChevronDown size={16} className="ml-2 text-gray-500" />
         </div>
