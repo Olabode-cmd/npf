@@ -6,6 +6,7 @@ import App from './App.jsx'
 import AdminLogin from './pages/auth/login.jsx'
 import DashboardLayout from './layouts/dashboardlayout.jsx'
 import Dashboard from './pages/dashboard/index.jsx'
+import CrimeReporting from './pages/dashboard/crime.jsx'
 
 const root = document.getElementById('root');
 
@@ -18,11 +19,12 @@ ReactDOM.createRoot(root).render(
         {/* Add more routes as needed */}
 
         <Route
-          path="/dashboard"
+          path="/dashboard/*"
           element={
             <DashboardLayout>
               <Routes>
                 <Route index element={<Dashboard />} />
+                <Route path="crime-reporting" element={<CrimeReporting />} />
                 {/* <Route path="analytics" element={<AnalyticsPage />} />
                 <Route path="users" element={<UsersPage />} />
                 <Route path="settings" element={<SettingsPage />} /> */}
