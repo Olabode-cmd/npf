@@ -1,15 +1,15 @@
 import { BASE_URL } from './api';
 
-export async function login(username, password) {
+export async function login(officer_id, password) {
   try {
-    console.log("Sending Login Request:", { username, password });
+    console.log("Sending Login Request:", { officer_id, password });
 
-    const response = await fetch(`${BASE_URL}/auth/login`, {
+    const response = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ officer_id, password }),
     });
 
     if (!response.ok) {
@@ -19,6 +19,18 @@ export async function login(username, password) {
     }
 
     const data = await response.json();
+    console.log(data)
+    const { access_token, refresh_token } = data;
+
+    // Ensure tokens are present before storing
+    if (access_token && refresh_token) {
+      localStorage.setItem('access_token', access_token);
+      localStorage.setItem('refresh_token', refresh_token);
+    } else {
+      console.error('Tokens not found in response:', data);
+      throw new Error('Invalid login response');
+    }
+
     return data;
   } catch (error) {
     console.error('Error during login:', error);
