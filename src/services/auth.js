@@ -37,3 +37,26 @@ export async function login(officer_id, password) {
     throw error;
   }
 }
+
+
+export async function getuser() {
+  const token = localStorage.getItem('access_token');
+  
+  if (!token) {
+    throw new Error('No access token found');
+  }
+
+  const response = await fetch(`${BASE_URL}/user`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  if (response.ok) {
+    return response.json();
+  } else {
+    throw new Error('Failed to fetch user');
+  }
+}
