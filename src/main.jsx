@@ -8,6 +8,9 @@ import AdminLogin from './pages/auth/login.jsx'
 import DashboardLayout from './layouts/dashboardlayout.jsx'
 import Dashboard from './pages/dashboard/index.jsx'
 import CrimeReporting from './pages/dashboard/crime.jsx'
+import SuspectBookingSystem from './pages/dashboard/suspectbooking.jsx'
+import CaseManagementSystem from './pages/dashboard/case.jsx'
+import IncidentEvidenceTracker from './pages/dashboard/evidence.jsx'
 
 const root = document.getElementById('root');
 
@@ -24,16 +27,49 @@ ReactDOM.createRoot(root).render(
           element={
             <DashboardLayout>
               <Routes>
-                <Route index element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                } />
-                <Route path="crime-reporting" element={
-                  <ProtectedRoute>
-                    <CrimeReporting />
-                  </ProtectedRoute>
-                } />
+                <Route
+                  index
+                  element={
+                    <ProtectedRoute>
+                      <Dashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="crime-reporting"
+                  element={
+                    <ProtectedRoute>
+                      <CrimeReporting />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="booking"
+                  element={
+                    <ProtectedRoute>
+                      <SuspectBookingSystem />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="cases"
+                  element={
+                    <ProtectedRoute>
+                      <CaseManagementSystem />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="evidence"
+                  element={
+                    <ProtectedRoute>
+                      <IncidentEvidenceTracker />
+                    </ProtectedRoute>
+                  }
+                />
                 {/* <Route path="analytics" element={<AnalyticsPage />} />
                 <Route path="users" element={<UsersPage />} />
                 <Route path="settings" element={<SettingsPage />} /> */}
