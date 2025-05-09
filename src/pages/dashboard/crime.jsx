@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  FileText, Map, AlertTriangle, Search, Plus, Calendar, Filter, 
+  FileText, Map, AlertTriangle, Search, Plus, Upload, Filter, 
   ArrowUpRight, CheckCircle, Clock
 } from 'lucide-react';
 import { cases } from '../../data/data' // Importing the dummy data
@@ -530,7 +530,7 @@ const SubmitReportForm = () => {
           <button
             className={`px-4 py-2 rounded-md ${
               reportType === 'citizen' 
-                ? 'bg-blue-100 text-blue-700 border border-blue-300' 
+                ? 'bg-green-100 text-green-700 border border-green-300' 
                 : 'bg-gray-100 text-gray-700 border border-gray-300'
             }`}
             onClick={() => setReportType('citizen')}
@@ -540,7 +540,7 @@ const SubmitReportForm = () => {
           <button
             className={`px-4 py-2 rounded-md ${
               reportType === 'officer' 
-                ? 'bg-blue-100 text-blue-700 border border-blue-300' 
+                ? 'bg-green-100 text-green-700 border border-green-300' 
                 : 'bg-gray-100 text-gray-700 border border-gray-300'
             }`}
             onClick={() => setReportType('officer')}
@@ -550,7 +550,7 @@ const SubmitReportForm = () => {
           <button
             className={`px-4 py-2 rounded-md ${
               reportType === 'anonymous' 
-                ? 'bg-blue-100 text-blue-700 border border-blue-300' 
+                ? 'bg-green-100 text-green-700 border border-green-300' 
                 : 'bg-gray-100 text-gray-700 border border-gray-300'
             }`}
             onClick={() => setReportType('anonymous')}
@@ -772,7 +772,7 @@ const SubmitReportForm = () => {
         <button className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg">
           Save as Draft
         </button>
-        <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg">
+        <button className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg">
           Submit Report
         </button>
       </div>

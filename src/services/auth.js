@@ -2,6 +2,8 @@ import { BASE_URL } from './api';
 
 export async function login(username, password) {
   try {
+    console.log("Sending Login Request:", { username, password });
+
     const response = await fetch(`${BASE_URL}/auth/login`, {
       method: 'POST',
       headers: {
@@ -11,6 +13,8 @@ export async function login(username, password) {
     });
 
     if (!response.ok) {
+      const errorBody = await response.json();
+      console.error("Error Response Body:", errorBody);
       throw new Error('Login failed');
     }
 
@@ -21,4 +25,3 @@ export async function login(username, password) {
     throw error;
   }
 }
-

@@ -1,14 +1,16 @@
 import Button from '../../components/ui/button';
 import { useState } from 'react';
 import { TextInput, PasswordInput } from '../../components/ui/inputs';
-import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
+import { login } from '../../services/auth';
+import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -17,10 +19,14 @@ const AdminLogin = () => {
 
       try {
         const response = await login(username, password);
-        // Handle successful login
-        console.log("Login successful:", response);
-        // Redirect or update UI accordingly
+        console.log("Login Response:", response);
+        localStorage.setItem("accessToken", response.token);
+
+        // Redirect to the dashboard
+        navigate("/dashboard");
       } catch (err) {
+        // Log the full error for debugging
+        console.error("Login Error:", err);
         setError("Invalid credentials. Please try again.");
       } finally {
         setLoading(false);
@@ -74,12 +80,16 @@ const AdminLogin = () => {
               <TextInput
                 label="Enter full name"
                 placeholder="Enter your full name"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
 
               <PasswordInput
                 label="Password"
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
 

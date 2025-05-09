@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Eye, EyeOff, Upload } from 'lucide-react';
 
-export const TextInput = ({ label, placeholder, required = false }) => {
+export const TextInput = ({ label, placeholder, required = false, ...props }) => {
   return (
     <div className="mb-4">
       <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -12,12 +12,13 @@ export const TextInput = ({ label, placeholder, required = false }) => {
         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
         placeholder={placeholder}
         required={required}
+        {...props}
       />
     </div>
   );
 };
 
-export const DateInput = ({ label, required = false }) => {
+export const DateInput = ({ label, required = false, ...props }) => {
   return (
     <div className="mb-4">
       <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -27,12 +28,13 @@ export const DateInput = ({ label, required = false }) => {
         type="date"
         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
         required={required}
+        {...props}
       />
     </div>
   );
 };
 
-export const PasswordInput = ({ label, placeholder, required = false }) => {
+export const PasswordInput = ({ label, placeholder, required = false, ...props }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -50,6 +52,7 @@ export const PasswordInput = ({ label, placeholder, required = false }) => {
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent pr-10"
           placeholder={placeholder}
           required={required}
+          {...props}
         />
         <button
           type="button"
