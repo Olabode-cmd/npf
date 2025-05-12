@@ -82,9 +82,8 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-
       <div className="container mx-auto px-4 py-8">
-        {/* Metrics */} 
+        {/* Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-xl shadow-md p-6 flex items-center">
             <div className="bg-blue-100 p-3 rounded-full mr-4">
@@ -246,7 +245,7 @@ const Dashboard = () => {
                           {d.activeCases}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                          ${d.budget.toLocaleString()}
+                          &#8358;{d.budget.toLocaleString()}
                         </td>
                       </tr>
                     ))}
